@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import { Button, Container, Grid, GridRow, Loader } from "semantic-ui-react";
 import "./RestaurantList.css";
+import RestaurantDetail from "./RestaurantDetail";
 import RestaurantThumbnail from "./RestaurantThumbnail";
 
 const NUMBER_OF_RESTAURANTS_PER_ROW = 3;
@@ -62,7 +64,10 @@ class Restaurants extends Component {
             ).map((row, rowIndex) => (
               <GridRow stretched key={rowIndex}>
                 {row.map((restaurant, restaurantIndex) => (
-                  <RestaurantThumbnail restaurant={restaurant} key={restaurantIndex} />
+                  <RestaurantThumbnail
+                    restaurant={restaurant}
+                    key={restaurantIndex}
+                  />
                 ))}
               </GridRow>
             ))}
@@ -73,6 +78,13 @@ class Restaurants extends Component {
             Voir plus de restaurants
           </Button>
         </Container>
+        <Route
+          path={`${this.props.match.url}/:id`}
+          component={path => <RestaurantDetail
+            restaurant={this.state.restaurants.find(restaurant => restaurant.id === path.match.params.id)}
+            id={path.match.params.id}
+          />}
+        />
       </div>
     ) : (
       <Loader active />

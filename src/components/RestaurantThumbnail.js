@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, Grid, Image, Rating } from "semantic-ui-react";
 import "./RestaurantThumbnail.css";
 
@@ -6,7 +7,7 @@ const truncate = expression => `${expression.slice(0, 150)}…`;
 
 const RestaurantThumbnail = ({ restaurant }) => (
   <Grid.Column stretched>
-    <Card fluid link>
+    <Card fluid link as={Link} to={`/restaurants/${restaurant.id}`}>
       <div className="restaurant-thumbnail-image-container">
         <Image className="restaurant-thumbnail-image" src={restaurant.image_url} />
       </div>
