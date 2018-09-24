@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Dimmer, Header, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const LandingView = () => (
   <Dimmer active page>
@@ -8,7 +9,7 @@ const LandingView = () => (
       Site en construction
       <Header.Subheader>À tes risques et périls</Header.Subheader>
       <br />
-      <Button>Trouver un resto</Button>
+      <Button as={Link} to="/restaurants">Trouver un resto</Button>
     </Header>
   </Dimmer>
 );
